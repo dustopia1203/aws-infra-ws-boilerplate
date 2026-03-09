@@ -78,16 +78,14 @@ The superpowers plugin is enabled and provides structured workflows:
 
 The standard workflow for an AWS infrastructure project in this workspace:
 
-| Step | Owner  | Action                                                                                |
-| ---- | ------ | ------------------------------------------------------------------------------------- |
-| 1    | manual | Clone this boilerplate into a new project directory                                   |
-| 2    | manual | Clone/import IAC structure with reusable code and modules from existing templates     |
-| 3    | agent  | Clarify spec, architecture design, and target AWS services; gather all context needed |
-| 4    | agent  | Modify variables and code to match the spec cleared in step 3                         |
-| 5    | agent  | Revalidate all IAC using MCP servers (API, docs, knowledge, pricing)                  |
-| 6    | manual | Run `terraform plan` and export to a plan file:                                       |
-|      |        | `terraform plan -out=tfplan && terraform show -no-color tfplan > plan.txt`            |
-| 7    | agent  | Read `plan.txt` and compare against actual IAC code; flag discrepancies               |
-| 8    | manual | Run `terraform apply` and verify actual AWS resources                                 |
-| 9    | agent  | Debug issues if needed, using AWS MCP servers to investigate and propose fixes        |
-
+| Step | Owner  | Action                                                                                                                                                            |
+| ---- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1    | manual | Clone this boilerplate into a new project directory                                                                                                               |
+| 2    | manual | Clone/import IAC structure with reusable code and modules from existing templates                                                                                 |
+| 3    | agent  | Clarify spec, architecture design, and target AWS services; gather all context needed                                                                             |
+| 4    | agent  | Modify variables and code to match the spec cleared in step 3                                                                                                     |
+| 5    | agent  | Revalidate all IAC using MCP servers (API, docs, knowledge, pricing)                                                                                              |
+| 6    | manual | Run plan command and export to a plan file: `terraform plan --parallelism 100 -out ./.terraform/terraform.plan -var-file variables.tfvars -no-color > ./plan.txt` |
+| 7    | agent  | Read `plan.txt` and compare against actual IAC code; flag discrepancies                                                                                           |
+| 8    | manual | Run `terraform apply "./.terraform/terraform.plan"` and verify actual AWS resources                                                                               |
+| 9    | agent  | Debug issues if needed, using AWS MCP servers to investigate and propose fixes                                                                                    |

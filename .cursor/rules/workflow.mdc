@@ -33,10 +33,10 @@ When modifying Terraform code, respect existing module and variable structure. E
 ## 3. Validation
 
 After code changes, use AWS MCP servers to validate:
-- Resource configurations are correct (aws-api-mcp-server)
+- Resource configurations are correct (awslabs.aws-api-mcp-server)
 - Architecture follows AWS best practices (aws-knowledge-mcp-server)
-- Service usage aligns with documentation (aws-documentation-mcp-server)
-- Cost implications are understood (aws-pricing-mcp-server)
+- Service usage aligns with documentation (awslabs.aws-documentation-mcp-server)
+- Cost implications are understood (awslabs.aws-pricing-mcp-server)
 
 ## 4. Plan Review
 

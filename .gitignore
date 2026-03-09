@@ -10,6 +10,8 @@ override.tf.json
 *_override.tf.json
 .terraformrc
 terraform.rc
+*.tfvars
+*.tfvars.json
 
 # Plan exports
 plan.txt

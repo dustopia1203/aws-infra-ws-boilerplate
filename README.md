@@ -4,13 +4,13 @@ A pre-configured Cursor IDE workspace for AWS Terraform projects, equipped with 
 
 ## Prerequisites
 
-| Tool | Purpose |
-|------|---------|
-| [Terraform CLI](https://developer.hashicorp.com/terraform/install) >= 1.x | Infrastructure-as-code engine |
+| Tool                                                                              | Purpose                                   |
+| --------------------------------------------------------------------------------- | ----------------------------------------- |
+| [Terraform CLI](https://developer.hashicorp.com/terraform/install) >= 1.x         | Infrastructure-as-code engine             |
 | [AWS CLI v2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) | AWS authentication and profile management |
-| Python 3.x + [uvx](https://docs.astral.sh/uv/) | Required to run MCP servers locally |
-| [Cursor IDE](https://cursor.sh) | Editor with AI agent support |
-| Superpowers plugin | Pre-enabled in `.cursor/settings.json` |
+| Python 3.x + [uvx](https://docs.astral.sh/uv/)                                    | Required to run MCP servers locally       |
+| [Cursor IDE](https://cursor.sh)                                                   | Editor with AI agent support              |
+| Superpowers plugin                                                                | Pre-enabled in `.cursor/settings.json`    |
 
 ## Quick Start
 
@@ -42,18 +42,19 @@ A pre-configured Cursor IDE workspace for AWS Terraform projects, equipped with 
 
 Four AWS MCP servers are pre-configured in `.cursor/mcp.json`:
 
-| Server | Type | Purpose |
-|--------|------|---------|
-| `aws-api-mcp-server` | Local (uvx) | Direct AWS API calls for resource inspection and validation |
-| `aws-knowledge-mcp-server` | Remote (HTTP) | AWS architecture knowledge base and best practices |
-| `aws-documentation-mcp-server` | Local (uvx) | AWS service documentation lookup |
-| `aws-pricing-mcp-server` | Local (uvx) | AWS pricing queries and cost estimation |
+| Server                         | Type          | Purpose                                                     |
+| ------------------------------ | ------------- | ----------------------------------------------------------- |
+| `aws-api-mcp-server`           | Local (uvx)   | Direct AWS API calls for resource inspection and validation |
+| `aws-knowledge-mcp-server`     | Remote (HTTP) | AWS architecture knowledge base and best practices          |
+| `aws-documentation-mcp-server` | Local (uvx)   | AWS service documentation lookup                            |
+| `aws-pricing-mcp-server`       | Local (uvx)   | AWS pricing queries and cost estimation                     |
 
 > **Setup:** Update `AWS_PROFILE` and `AWS_REGION` in `.cursor/mcp.json` before first use.
 
 ### Skills
 
 **Terraform Skill (v1.6.0)** -- Activates automatically when working with Terraform or OpenTofu. Provides guidance on:
+
 - Module structure and patterns
 - Testing frameworks (native tests, Terratest)
 - CI/CD pipeline configuration
@@ -64,28 +65,29 @@ Four AWS MCP servers are pre-configured in `.cursor/mcp.json`:
 
 The superpowers plugin is enabled and provides structured workflows:
 
-| Workflow | When to Use |
-|----------|-------------|
-| Brainstorming | Before any creative work -- explores design before implementation |
-| Writing Plans | Turn specs into bite-sized implementation plans |
-| Executing Plans | Implement plans task-by-task with checkpoints |
-| Systematic Debugging | Investigate bugs with evidence-based troubleshooting |
-| Code Review | Validate work against plan and coding standards |
-| Verification | Confirm work is complete before claiming done |
+| Workflow             | When to Use                                                       |
+| -------------------- | ----------------------------------------------------------------- |
+| Brainstorming        | Before any creative work -- explores design before implementation |
+| Writing Plans        | Turn specs into bite-sized implementation plans                   |
+| Executing Plans      | Implement plans task-by-task with checkpoints                     |
+| Systematic Debugging | Investigate bugs with evidence-based troubleshooting              |
+| Code Review          | Validate work against plan and coding standards                   |
+| Verification         | Confirm work is complete before claiming done                     |
 
 ## Workflow
 
 The standard workflow for an AWS infrastructure project in this workspace:
 
-| Step | Owner | Action |
-|------|-------|--------|
-| 1 | manual | Clone this boilerplate into a new project directory |
-| 2 | manual | Clone/import IAC structure with reusable code and modules from existing templates |
-| 3 | agent | Clarify spec, architecture design, and target AWS services; gather all context needed |
-| 4 | agent | Modify variables and code to match the spec cleared in step 3 |
-| 5 | agent | Revalidate all IAC using MCP servers (API, docs, knowledge, pricing) |
-| 6 | manual | Run `terraform plan` and export to a plan file: |
-|   |        | `terraform plan -out=tfplan && terraform show -no-color tfplan > plan.txt` |
-| 7 | agent | Read `plan.txt` and compare against actual IAC code; flag discrepancies |
-| 8 | manual | Run `terraform apply` and verify actual AWS resources |
-| 9 | agent | Debug issues if needed, using AWS MCP servers to investigate and propose fixes |
+| Step | Owner  | Action                                                                                |
+| ---- | ------ | ------------------------------------------------------------------------------------- |
+| 1    | manual | Clone this boilerplate into a new project directory                                   |
+| 2    | manual | Clone/import IAC structure with reusable code and modules from existing templates     |
+| 3    | agent  | Clarify spec, architecture design, and target AWS services; gather all context needed |
+| 4    | agent  | Modify variables and code to match the spec cleared in step 3                         |
+| 5    | agent  | Revalidate all IAC using MCP servers (API, docs, knowledge, pricing)                  |
+| 6    | manual | Run `terraform plan` and export to a plan file:                                       |
+|      |        | `terraform plan -out=tfplan && terraform show -no-color tfplan > plan.txt`            |
+| 7    | agent  | Read `plan.txt` and compare against actual IAC code; flag discrepancies               |
+| 8    | manual | Run `terraform apply` and verify actual AWS resources                                 |
+| 9    | agent  | Debug issues if needed, using AWS MCP servers to investigate and propose fixes        |
+

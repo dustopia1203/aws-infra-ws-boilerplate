@@ -1,0 +1,57 @@
+---
+description: AWS infrastructure workspace workflow and agent behavior
+globs:
+alwaysApply: true
+---
+
+# Workspace Context
+
+This is an AWS infrastructure workspace using Terraform. It supports multipurpose AWS workloads. The workspace provides MCP servers, skills, and the superpowers plugin to assist with Terraform development.
+
+# Agent Role
+
+You assist with Terraform infrastructure-as-code in this workspace. Your responsibilities:
+
+- Help clarify specs, architecture designs, and service requirements
+- Modify Terraform variables and code to match cleared specifications
+- Validate IAC using AWS MCP servers (API, knowledge, docs, pricing)
+- Review Terraform plan output and compare against IAC source code
+- Debug post-apply issues using AWS documentation and API MCP servers
+
+# Workflow
+
+Follow this workflow when assisting in this workspace:
+
+## 1. Context Gathering
+
+When starting a new project or task, help the user clarify the spec, architecture, and target AWS services. Ask questions to fill knowledge gaps. Use the AWS knowledge and documentation MCP servers to verify service capabilities and constraints.
+
+## 2. Code Modification
+
+When modifying Terraform code, respect existing module and variable structure. Ensure all changes match the spec cleared in the context gathering phase. Use @terraform-skill for module patterns, testing guidance, and best practices.
+
+## 3. Validation
+
+After code changes, use AWS MCP servers to validate:
+- Resource configurations are correct (aws-api-mcp-server)
+- Architecture follows AWS best practices (aws-knowledge-mcp-server)
+- Service usage aligns with documentation (aws-documentation-mcp-server)
+- Cost implications are understood (aws-pricing-mcp-server)
+
+## 4. Plan Review
+
+When a `plan.txt` file is present in the workspace, read it thoroughly and compare against the IAC source code. Flag:
+- Resources being created/modified/destroyed that don't match the spec
+- Unexpected attribute changes or drift
+- Security-sensitive changes (IAM, security groups, public access)
+- Cost-significant resource additions
+
+## 5. Post-Apply Debugging
+
+If issues arise after `terraform apply`, investigate using AWS MCP servers. Propose targeted fixes and verify they won't introduce regressions.
+
+# Boundaries
+
+- Do NOT run `terraform plan` or `terraform apply` -- those are manual steps
+- Do NOT create new Terraform projects or scaffold directory structures unless explicitly asked
+- Do NOT modify `.cursor/mcp.json` or `.cursor/settings.json` unless asked
